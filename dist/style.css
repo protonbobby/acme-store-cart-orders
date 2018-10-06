@@ -1,0 +1,15 @@
+* {
+  color: whitesmoke;
+}
+
+body{
+  background: URL(https://proxy.duckduckgo.com/iu/?u=http%3A%2F%2Fi.imgur.com%2F3wFnUto.png&f=1);
+}
+
+HEADER{
+  background-color: rgba(224, 51, 12, 0.9)
+}
+
+h1, h2, h6 {
+  text-align: center;
+}
