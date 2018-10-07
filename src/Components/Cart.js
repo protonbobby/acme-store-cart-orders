@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Button } from 'reactstrap';
 import Products from './Products';
 
 class Cart extends Component {
@@ -7,7 +8,8 @@ class Cart extends Component {
     return (
       <div>
         <Products />
-      </div>
+        <Button color='primary'>Create Order</Button>
+      </div >
     )
   }
 }

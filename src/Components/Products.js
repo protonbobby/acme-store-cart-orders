@@ -7,18 +7,22 @@ class Products extends Component {
     console.log(this.props.products)
     return (
       <div>
-        Products
-      <hr />
-        <ul>
+        <h2>Products</h2>
+        <hr />
+        <div className='flexbox'>
           {
             this.props.products
               .map(product => {
                 return (
-                  <li key={product.id}>{product.name}</li>
+                  <div className='products' key={product.id}>{product.name} <br />
+                    0 ordered <br />
+                    <button className='button'>+</button>
+                    <button className='button'>-</button>
+                  </div>
                 )
               })
           }
-        </ul>
+        </div>
       </div>
     )
   }

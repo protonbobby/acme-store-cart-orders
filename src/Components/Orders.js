@@ -5,7 +5,9 @@ class Orders extends Component {
   render() {
     return (
       <div>
-        Orders
+        <h2>
+          Orders
+        </h2>
         <hr />
         <ul>
           {

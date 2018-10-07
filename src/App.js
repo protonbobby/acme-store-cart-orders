@@ -4,7 +4,7 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { loadProducts } from './Reducers/products';
 import { loadOrders } from './Reducers/orders';
-import Nav from './Components/Nav';
+import Navbar from './Components/Navbar';
 import Cart from './Components/Cart';
 import Orders from './Components/Orders';
 
@@ -20,7 +20,9 @@ class App extends Component {
       <div>
         <Router>
           <div>
-            <Route component={({ location }) => <Nav path={location.pathname} />} />
+            <Route component={({ location }) => <Navbar path={location.pathname} />} />
+
+            <Route path='/home' render={() => <img src="../dist/images/tacos.png" id="homeImg"></img>} replace />
 
             <Route exact path='/orders' component={Orders} replace />
             <Route exact path='/cart' component={Cart} replace />
