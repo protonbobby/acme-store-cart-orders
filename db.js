@@ -16,7 +16,7 @@ const Product = conn.define('product', {
 
 const Order = conn.define('order', {
   id: {
-    type: conn.Sequelize.UUID,
+    type: conn.Sequelize.UUID, //Universally unique identifier
     defaultValue: conn.Sequelize.UUIDV4,
     primaryKey: true
   },
@@ -32,7 +32,12 @@ const LineItem = conn.define('lineItem', {
     type: conn.Sequelize.INTEGER,
     defaultValue: 1
   },
+  //productId
+  //orderId
 });
+
+LineItem.belongsTo(Product); //creates --> productId on LineItem
+Order.hasMany(LineItem); //creates --> orderId on LineItem
 
 const syncAndSeed = () => {
   conn.sync({ force: true })
