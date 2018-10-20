@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const SET_COUNT = 'SET_COUNT';
 
-const _setCount = count => ({
+export const _setCount = count => ({
   type: SET_COUNT,
   count
 })

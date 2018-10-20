@@ -4,7 +4,7 @@ import { NavLink as RRNavLink } from 'react-router-dom';
 import { Button, Nav, NavItem, NavLink } from 'reactstrap';
 import { activeNav, inactiveNav } from '../selectors';
 
-const Navbar = ({ orders, products, path }) => {
+const Navbar = ({ orders, products, path, reset, itemsSold }) => {
   return (
     <div>
       <Nav tabs>
@@ -42,10 +42,13 @@ const Navbar = ({ orders, products, path }) => {
         </NavItem>
       </Nav>
 
-      <div className='itemsSold'>
-        0 Items Sold!!
-        </div>
-      <Button color='warning'>Reset</Button>
+      <div className='itemsSold'>{itemsSold} Items Sold!!</div>
+
+      <Button
+        color='warning'
+        onClick={reset}>
+        Reset
+      </Button>
     </div >
   )
 }

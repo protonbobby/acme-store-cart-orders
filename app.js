@@ -91,6 +91,13 @@ app.put('/api/orders/:id', (req, res, next) => {
     .catch(next);
 });
 
+//reset
+app.post('/api/reset', (req, res, next) => {
+  Order.destroy({ cascade: true, truncate: true })
+    .then(() => res.sendStatus(204))
+    .catch(next);
+});
+
 app.use((err, req, res, next) => {
   console.log(err);
   res.status(err.status || 500).send({ error: err.message })

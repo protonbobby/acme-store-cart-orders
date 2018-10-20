@@ -1,25 +1,37 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route } from 'react-router-dom';
 
 import { loadProducts } from './Reducers/products';
-import { loadOrders } from './Reducers/orders';
+import { reset } from './Reducers/orders';
+import { loadCount } from './Reducers/count';
 import Navbar from './Components/Navbar';
 import Cart from './Components/Cart';
 import Orders from './Components/Orders';
 
+const state = ({ products, count }) => ({
+  itemsSold: count,
+  products,
+})
+
+const dispatch = dispatch => ({
+  init: () => {
+    dispatch(loadProducts());
+    dispatch(loadCount());
+  },
+  reset: () => dispatch(reset())
+});
+
 class App extends Component {
-  componentDidMount() {
-    this.props.loadProducts();
-    this.props.loadOrders();
-  }
+  componentDidMount() { this.props.init(); }
 
   render() {
+    const { reset, itemsSold } = this.props
     return (
       <div>
         <Router>
           <div>
-            <Route component={({ location }) => <Navbar path={location.pathname} />} />
+            <Route component={({ location }) => <Navbar path={location.pathname} reset={reset} itemsSold={itemsSold} />} />
 
             <Route path='/home' render={() => <img src="../dist/images/tacos.png" id="homeImg"></img>} replace />
 
@@ -32,13 +44,4 @@ class App extends Component {
   }
 };
 
-//____________________________________________
-const mapStateToProps = ({ products, orders }) => ({
-  products,
-  orders,
-})
-const mapDispatchToPtops = (dispatch) => ({
-  loadProducts: () => dispatch(loadProducts()),
-  loadOrders: () => dispatch(loadOrders()),
-})
-export default connect(mapStateToProps, mapDispatchToPtops)(App);
+export default connect(state, dispatch)(App);

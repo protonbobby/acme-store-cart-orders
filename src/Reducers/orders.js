@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { loadCount } from './count';
+import { loadCount, _setCount } from './count';
 
 const LOAD_ORDERS = 'LOAD_ORDERS';
 const CREATE_ORDER = 'CREATE_ORDER';
