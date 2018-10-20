@@ -19,6 +19,23 @@ app.get('/api/products', (req, res, next) => {
     .catch(next);
 });
 
+app.get('/api/count', (req, res, next) => {
+  return LineItem.findAll({
+    include: [{
+      model: Order,
+      where: { status: 'ORDER' }
+    }]
+  })
+    .then(lineItems => {
+      return lineItems.reduce((sum, lineItem) => {
+        sum += lineItem.quantity
+        return sum;
+      }, 0);
+    })
+    .then(count => res.send({ count }))
+    .catch(next);
+});
+
 app.get('/api/orders', async (req, res, next) => {
   const attr = {
     status: 'CART'
@@ -75,7 +92,8 @@ app.put('/api/orders/:id', (req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-  res.status(500).send({ error: err.message })
+  console.log(err);
+  res.status(err.status || 500).send({ error: err.message })
 });
 
 module.exports = app;

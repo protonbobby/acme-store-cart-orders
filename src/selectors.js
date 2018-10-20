@@ -18,3 +18,13 @@ export const inactiveNav = (value, path, fuzzy = false) => {
     ;
   return style;
 }
+
+
+export const reset = () => {
+  this.setState = {
+    Tortillas: 0,
+    Cheese: 0,
+    Salsa: 0,
+    Limes: 0,
+  }
+}

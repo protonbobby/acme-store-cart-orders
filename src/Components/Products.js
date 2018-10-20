@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadProducts } from '../Reducers/products';
+import { createOrder } from '../Reducers/orders'
+import { Button } from 'reactstrap';
+
 
 class Products extends Component {
   constructor(props) {
@@ -55,6 +58,7 @@ class Products extends Component {
               })
           }
         </div>
+        <Button onSubmit={(order) => createOrder(order)} color='primary'>Create Order</Button>
       </div>
     )
   }
@@ -67,6 +71,7 @@ const mapStateToProps = ({ products, orders }) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   loadProducts: () => dispatch(loadProducts()),
+  createOrder: (order) => dispatch(createOrder(order)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Products);

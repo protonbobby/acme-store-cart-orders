@@ -37,7 +37,7 @@ const Navbar = ({ orders, products, path }) => {
             replace
             className={activeNav('/orders', path)}
             style={inactiveNav('/orders', path)}>
-            Orders
+            Orders ({orders.length})
           </NavLink>
         </NavItem>
       </Nav>

@@ -7,8 +7,15 @@ const _loadProducts = (products) => ({
   products,
 });
 
-const initialState = [];
-const productsReducer = (state = initialState, action) => {
+// name: {
+//   type: conn.Sequelize.STRING,
+//   allowNull: false,
+//   unique: true,
+//   validate: {
+//     notEmpty: true
+//   }
+
+const productsReducer = (state = [], action) => {
   switch (action.type) {
     case LOAD_PRODUCTS:
       return action.products
@@ -21,7 +28,6 @@ export const loadProducts = () => {
     axios.get('/api/products')
       .then(res => res.data)
       .then(products => dispatch(_loadProducts(products)))
-      .catch(e => console.log(e));
   };
 };
 
